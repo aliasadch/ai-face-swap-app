@@ -5,9 +5,7 @@ from insightface.app import FaceAnalysis
 app = FaceAnalysis(name="buffalo_l")
 app.prepare(ctx_id=0)
 
-swapper = insightface.model_zoo.get_model(
-    "https://github.com/deepinsight/insightface/releases/download/v0.7/inswapper_128.onnx"
-)
+swapper = insightface.model_zoo.get_model("inswapper_128.onnx")
 
 def swap_faces(source_path, target_path):
     source = cv2.imread(source_path)
