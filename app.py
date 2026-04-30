@@ -29,4 +29,4 @@ demo = gr.Interface(
 )
 
 if __name__ == "__main__":
-    demo.launch()
+   demo.launch(share=True)
