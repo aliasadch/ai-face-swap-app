@@ -9,3 +9,4 @@ opencv-python
 gradio
 Pillow
 numpy
+Alissonerdx/BFS-Best-Face-Swap LoRA
