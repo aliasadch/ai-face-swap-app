@@ -1,5 +1,4 @@
 %%writefile face_swap.py
-
 import cv2
 import insightface
 import os
@@ -10,7 +9,6 @@ assert os.path.exists("inswapper_128.onnx"), "inswapper_128.onnx not found!"
 app = insightface.app.FaceAnalysis(name="buffalo_l")
 app.prepare(ctx_id=0)
 
-# ✅ Load LOCAL model file only
 swapper = insightface.model_zoo.get_model("inswapper_128.onnx")
 
 def swap_faces(source_path, target_path):
