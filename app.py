@@ -5,13 +5,13 @@ from diffusion_edit import edit_image
 import numpy as np
 
 def process(source, target, prompt, strength):
-    swapped = swap_faces(source, target)
+    swapped, bbox = swap_faces(source, target)
 
     if swapped is None:
         return "No face detected"
 
     if prompt.strip() != "":
-        final = edit_image(swapped, prompt, strength)
+        final = edit_image(swapped, prompt, bbox, strength)
         return final
     else:
         return cv2.cvtColor(swapped, cv2.COLOR_BGR2RGB)
