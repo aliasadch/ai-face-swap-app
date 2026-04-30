@@ -19,15 +19,16 @@ def swap_faces(source_path, target_path):
     target_faces = app.get(target)
 
     if len(source_faces) == 0 or len(target_faces) == 0:
-        return None, None
+        return None, None, None
 
+    source_face = source_faces[0]
     target_face = target_faces[0]
 
     result = swapper.get(
         target,
         target_face,
-        source_faces[0],
+        source_face,
         paste_back=True
     )
 
-    return result, target_face.bbox
+    return result, source_face.bbox, target_face.bbox
