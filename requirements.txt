@@ -1,0 +1,11 @@
+torch
+torchvision
+diffusers
+transformers
+accelerate
+insightface
+onnxruntime-gpu
+opencv-python
+gradio
+Pillow
+numpy
