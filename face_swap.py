@@ -1,8 +1,7 @@
 import cv2
 import insightface
-from insightface.app import FaceAnalysis
 
-app = FaceAnalysis(name="buffalo_l")
+app = insightface.app.FaceAnalysis(name="buffalo_l")
 app.prepare(ctx_id=0)
 
 swapper = insightface.model_zoo.get_model("inswapper_128.onnx")
@@ -17,9 +16,11 @@ def swap_faces(source_path, target_path):
     if len(source_faces) == 0 or len(target_faces) == 0:
         return None
 
+    target_face = target_faces[0]
+
     result = swapper.get(
         target,
-        target_faces[0],
+        target_face,
         source_faces[0],
         paste_back=True
     )
