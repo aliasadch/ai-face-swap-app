@@ -5,16 +5,21 @@ from diffusion_edit import edit_image
 import numpy as np
 
 def process(source, target, prompt, strength):
-    swapped, bbox = swap_faces(source, target)
+
+    swapped, source_bbox, target_bbox = swap_faces(source, target)
 
     if swapped is None:
         return "No face detected"
 
-    if prompt.strip() != "":
-        final = edit_image(swapped, prompt, bbox, strength)
-        return final
-    else:
-        return cv2.cvtColor(swapped, cv2.COLOR_BGR2RGB)
+    # Detect hair color from SOURCE image
+    hair_color = detect_hair_color(source, source_bbox)
+    hair_style = "natural hairstyle"  # simple version
+
+    enhanced_prompt = f"{prompt}, {hair_color} hair, {hair_style}, photorealistic"
+
+    final = edit_image(swapped, enhanced_prompt, target_bbox, strength)
+
+    return final
 
 demo = gr.Interface(
     fn=process,
